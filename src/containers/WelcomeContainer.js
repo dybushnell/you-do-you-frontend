@@ -4,7 +4,11 @@ function WelcomeContainer() {
   return (
     <div>
       <h1>You Do You</h1>
-      <div className="welcome-container">Login Signup</div>
+      <div className="welcome-container">
+        <span>Login</span>
+        <br />
+        <span>Signup</span>
+      </div>
     </div>
   );
 }

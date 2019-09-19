@@ -1,16 +1,37 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import ProfileContainer from "./containers/ProfileContainer";
 import MatchContainer from "./containers/MatchContainer";
+import MatchesContainer from "./containers/MatchesContainer";
 import MessagesContainer from "./containers/MessagesContainer";
 import WelcomeContainer from "./containers/WelcomeContainer";
 
-import Button from "react-rainbow-components/components/Button";
+// import ReactDOM from "react-dom";
+// import Button from "react-rainbow-components/components/Button";
 
 import "./App.css";
 
 class App extends React.Component {
+  state = {
+    allUsers: [],
+    allMessages: []
+  };
+
+  componentDidMount() {
+    this.doTheFetch();
+  }
+
+  doTheFetch = () => {
+    console.log("starting");
+    fetch("http://localhost:4000/api/v1/users")
+      .then(resp => resp.json())
+      .then(data =>
+        this.setState({ allUsers: data }, () =>
+          console.log("Users:", this.state.allUsers)
+        )
+      );
+  };
+
   render() {
     return (
       <Router>
@@ -30,12 +51,26 @@ class App extends React.Component {
         {/* close Welcome route */}
         <Route
           exact
+          path="/match"
+          render={() => {
+            return (
+              <div className="match">
+                <div>
+                  <MatchContainer matches={this.state.allUsers} />
+                </div>
+              </div>
+            );
+          }}
+        />{" "}
+        {/* close Matches route */}
+        <Route
+          exact
           path="/matches"
           render={() => {
             return (
               <div className="matches">
                 <div>
-                  <MatchContainer />
+                  <MatchesContainer matches={this.state.allUsers} />
                 </div>
               </div>
             );
