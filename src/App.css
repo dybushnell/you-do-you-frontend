@@ -16,3 +16,10 @@
 .App-link {
   color: #61dafb;
 }
+
+.header {
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

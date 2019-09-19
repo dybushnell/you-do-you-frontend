@@ -5,6 +5,7 @@ import MatchContainer from "./containers/MatchContainer";
 import MatchesContainer from "./containers/MatchesContainer";
 import MessagesContainer from "./containers/MessagesContainer";
 import WelcomeContainer from "./containers/WelcomeContainer";
+import Header from "./components/Header";
 
 // import ReactDOM from "react-dom";
 // import Button from "react-rainbow-components/components/Button";
@@ -40,10 +41,9 @@ class App extends React.Component {
           path="/"
           render={() => {
             return (
-              <div className="welcome">
-                <div>
-                  <WelcomeContainer />
-                </div>
+              <div>
+                <Header />
+                <WelcomeContainer />
               </div>
             );
           }}
