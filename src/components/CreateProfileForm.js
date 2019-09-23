@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Picklist, PicklistOption } from "react-rainbow-components";
+// import { Input, Picklist, PicklistOption } from "react-rainbow-components";
 
 class CreateProfileForm extends React.Component {
   state = {
@@ -12,58 +12,132 @@ class CreateProfileForm extends React.Component {
     image_url: ""
   };
 
-  changeHandler(value) {
-    console.log(value);
-  }
+  submitHandler = e => {
+    e.preventDefault();
+    console.log(this.state);
+    fetch("http://localhost:4000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        first_name: this.state.first_name,
+        email: this.state.email,
+        birthdate: this.state.birthdate,
+        location: this.state.location,
+        relationship_goal: this.state.relationship_goal,
+        blood_type: this.state.blood_type,
+        image_url: this.state.image_url
+      })
+    });
+  };
+
+  changeHandler = e => {
+    console.log("e.target.name: ", e.target.name);
+    console.log("e.target.value: ", e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     return (
-      <div>
-        <Input
-          id="input-component-1"
-          label="first name"
-          placeholder="first name"
-        />
-        <br />
-        <Input id="input-component-2" label="location" placeholder="location" />
-        <br />
-        <Input label="birthdate" type="date" />
-        <br />
-        <Picklist
-          id="picklist-1"
-          placeholder="blood type"
-          // onChange={(value) => setState({ value })}
-          // value={state.value}
-          label="blood type"
-          // hideLabel
-        >
-          <PicklistOption name="O+" label="O+" />
-          <PicklistOption name="O-" label="O-" />
-          <PicklistOption name="A+" label="A+" />
-          <PicklistOption name="A-" label="A-" />
-          <PicklistOption name="B+" label="B+" />
-          <PicklistOption name="B-" label="B-" />
-          <PicklistOption name="AB+" label="AB+" />
-          <PicklistOption name="AB-" label="AB-" />
-        </Picklist>{" "}
-        <br />
-        <Picklist
-          id="picklist-3"
-          placeholder="relationship sought"
-          // onChange={(value) => setState({ value })}
-          // value={state.value}
-          label="relationship sought"
-          // hideLabel
-        >
-          <PicklistOption name="short term" label="short term" />
-          <PicklistOption name="long term" label="long term" />
-        </Picklist>
-        <br />
-        <Input
-          label="Input Url"
-          placeholder="https://react-rainbow-components.com"
-          type="url"
-        />
+      <div className="profile-box">
+        <form onSubmit={this.submitHandler}>
+          first name:
+          <br />
+          <input
+            className="input"
+            type="text"
+            placeholder="first name"
+            value={this.state.first_name}
+            name="first_name"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <br />
+          email:
+          <br />
+          <input
+            className="input"
+            type="text"
+            placeholder="email"
+            value={this.state.email}
+            name="email"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <br />
+          location:
+          <br />
+          <input
+            className="input"
+            type="text"
+            placeholder="location"
+            value={this.state.location}
+            name="location"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <br />
+          birthdate:
+          <br />
+          <input
+            className="input"
+            type="date"
+            placeholder="birthdate"
+            value={this.state.birthdate}
+            name="birthdate"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <br />
+          bloodtype:
+          <select
+            className="input"
+            placeholder="blood_type"
+            name="blood_type"
+            value={this.state.bloodtype}
+            onChange={this.changeHandler}
+          >
+            <option></option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+          <br />
+          <br />
+          relationship sought:
+          <select
+            className="input"
+            placeholder="relationship_goal"
+            name="relationship_goal"
+            value={this.state.relationship_goal}
+            onChange={this.changeHandler}
+          >
+            <option></option>
+            <option value="short-term">short-term</option>
+            <option value="long-term">long-term</option>
+          </select>
+          <br />
+          <br />
+          link to image:
+          <br />
+          <input
+            className="input"
+            type="text"
+            placeholder="image url"
+            value={this.state.image_url}
+            name="image_url"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <br />
+          <input type="submit" value="submit" />
+        </form>
       </div>
     );
   }
