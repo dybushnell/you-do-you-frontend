@@ -1,14 +1,11 @@
 import React from "react";
+import WelcomeComponent from "../components/WelcomeComponent";
 
 class WelcomeContainer extends React.Component {
   render() {
     return (
-      <div>
-        <div className="welcome-container">
-          <span>Login</span>
-          <br />
-          <span>Signup</span>
-        </div>
+      <div className="welcome-container">
+        <WelcomeComponent />
       </div>
     );
   }

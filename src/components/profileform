@@ -1,0 +1,89 @@
+  render() {
+    return (
+      <div className="profile-box">
+        <form onSubmit={this.submitHandler}>
+          <input
+            type="text"
+            placeholder="email"
+            value={this.state.email}
+            name="email"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="password"
+            value={this.state.password}
+            name="password"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="verify password"
+            value={this.state.password}
+            name="password"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <br />
+          <input
+            type="text"
+            placeholder="first name"
+            value={this.state.first_name}
+            name="first_name"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <input
+            type="text"
+            placeholder="location"
+            value={this.state.location}
+            name="location"
+            onChange={this.changeHandler}
+          />
+          <br />
+          birthdate:
+          <input
+            type="date"
+            placeholder="birthdate"
+            value={this.state.birthdate}
+            name="birthdate"
+            onChange={this.changeHandler}
+          />
+          <br />
+          bloodtype:
+          <select value={this.state.bloodtype} onChange={this.changeHandler}>
+            <option value="o_pos">O+</option>
+            <option value="o_neg">O-</option>
+            <option value="a_pos">A+</option>
+            <option value="a_neg">A-</option>
+            <option value="b_pos">B+</option>
+            <option value="b_neg">B-</option>
+            <option value="ab_pos">AB+</option>
+            <option value="ab_neg">AB-</option>
+          </select>
+          <br />
+          relationship sought:
+          <select
+            value={this.state.relationship_goal}
+            onChange={this.changeHandler}
+          >
+            <option value="short_term">short-term</option>
+            <option value="long_term">long-term</option>
+          </select>
+          <br />
+          <input
+            type="text"
+            placeholder="image url"
+            value={this.state.image_url}
+            name="image_url"
+            onChange={this.changeHandler}
+          />
+          <br />
+          <input type="submit" value="submit" />
+        </form>
+      </div>
+    );
+  }
+}

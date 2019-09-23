@@ -23,14 +23,10 @@ class App extends React.Component {
   }
 
   doTheFetch = () => {
-    console.log("starting");
+    // console.log("starting");
     fetch("http://localhost:4000/api/v1/users")
       .then(resp => resp.json())
-      .then(data =>
-        this.setState({ allUsers: data }, () =>
-          console.log("Users:", this.state.allUsers)
-        )
-      );
+      .then(data => this.setState({ allUsers: data }));
   };
 
   render() {
@@ -54,10 +50,9 @@ class App extends React.Component {
           path="/match"
           render={() => {
             return (
-              <div className="match">
-                <div>
-                  <MatchContainer matches={this.state.allUsers} />
-                </div>
+              <div>
+                <Header />
+                <MatchContainer matches={this.state.allUsers} />
               </div>
             );
           }}
@@ -68,10 +63,9 @@ class App extends React.Component {
           path="/matches"
           render={() => {
             return (
-              <div className="matches">
-                <div>
-                  <MatchesContainer matches={this.state.allUsers} />
-                </div>
+              <div>
+                <Header />
+                <MatchesContainer matches={this.state.allUsers} />
               </div>
             );
           }}
@@ -82,10 +76,9 @@ class App extends React.Component {
           path="/messages"
           render={() => {
             return (
-              <div className="messages">
-                <div>
-                  <MessagesContainer />
-                </div>
+              <div>
+                <Header />
+                <MessagesContainer />
               </div>
             );
           }}
@@ -96,14 +89,13 @@ class App extends React.Component {
           path="/profile"
           render={() => {
             return (
-              <div className="profile">
-                <div>
-                  <ProfileContainer />
-                </div>
+              <div>
+                <Header />
+                <ProfileContainer />
               </div>
             );
           }}
-        />{" "}
+        />
         {/* close Profile route */}
       </Router>
     );
