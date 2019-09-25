@@ -1,21 +1,17 @@
 import React from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
-import ProfileContainer from "./containers/ProfileContainer";
-import MatchContainer from "./containers/MatchContainer";
-import MatchesContainer from "./containers/MatchesContainer";
-import MessagesContainer from "./containers/MessagesContainer";
+// import { Route, BrowserRouter as Router } from "react-router-dom";
 import WelcomeContainer from "./containers/WelcomeContainer";
+import CreateProfileContainer from "./containers/CreateProfileContainer";
+import MatchesContainer from "./containers/MatchesContainer";
+// import MessagesContainer from "./containers/MessagesContainer";
 import Header from "./components/Header";
-
-// import ReactDOM from "react-dom";
-// import Button from "react-rainbow-components/components/Button";
-
 import "./App.css";
 
 class App extends React.Component {
   state = {
     allUsers: [],
-    allMessages: []
+    user: [],
+    location: "welcome"
   };
 
   componentDidMount() {
@@ -23,92 +19,60 @@ class App extends React.Component {
   }
 
   doTheFetch = () => {
-    // console.log("starting");
     fetch("http://localhost:4000/api/v1/users")
       .then(resp => resp.json())
       .then(data => this.setState({ allUsers: data }));
   };
 
+  passLocation = () => {
+    this.setState({ location: "createProfile" });
+  };
+
+  passLogin = data => {
+    console.log("user data: ", data);
+
+    this.setState({ user: data });
+    // debugger;
+    this.setState({ location: "matches" });
+  };
+
   render() {
-    return (
-      <Router>
-        <Route
-          exact
-          path="/"
-          render={() => {
-            return (
-              <div>
-                <Header />
-                <WelcomeContainer />
-              </div>
-            );
-          }}
-        />{" "}
-        {/* close Welcome route */}
-        <Route
-          exact
-          path="/match"
-          render={() => {
-            return (
-              <div>
-                <Header />
-                <MatchContainer matches={this.state.allUsers} />
-              </div>
-            );
-          }}
-        />{" "}
-        {/* close Matches route */}
-        <Route
-          exact
-          path="/matches"
-          render={() => {
-            return (
-              <div>
-                <Header />
-                <MatchesContainer matches={this.state.allUsers} />
-              </div>
-            );
-          }}
-        />{" "}
-        {/* close Matches route */}
-        <Route
-          exact
-          path="/messages"
-          render={() => {
-            return (
-              <div>
-                <Header />
-                <MessagesContainer />
-              </div>
-            );
-          }}
-        />{" "}
-        {/* close Messages route */}
-        <Route
-          exact
-          path="/profile"
-          render={() => {
-            return (
-              <div>
-                <Header />
-                <ProfileContainer />
-              </div>
-            );
-          }}
-        />
-        {/* close Profile route */}
-      </Router>
-    );
+    if (this.state.location === "welcome") {
+      return (
+        <div>
+          <Header />
+          <WelcomeContainer
+            allUsers={this.state.allUsers}
+            passLogin={this.passLogin}
+            passLocation={this.passLocation}
+          />
+        </div>
+      );
+    } else if (this.state.location === "matches") {
+      return (
+        <div>
+          <Header />
+          <MatchesContainer
+            allUsers={this.state.allUsers}
+            first_name={this.state.user[0].first_name}
+            email={this.state.user[0].email}
+            birthdate={this.state.user[0].birthdate}
+            location={this.state.user[0].location}
+            relationship_goal={this.state.user[0].relationship_goal}
+            blood_type={this.state.user[0].blood_type}
+            image_url={this.state.user[0].image_url}
+          />
+        </div>
+      );
+    } else if (this.state.location === "createProfile") {
+      return (
+        <div>
+          <Header />
+          <CreateProfileContainer passLogin={this.passLogin} />
+        </div>
+      );
+    }
   }
 }
-
-/*     <Button
-        label="Hello!"
-        variant="brand"
-        onClick={() => alert("Hello World!")}
-        /> */
-
-// const rootElement = document.getElementById("root");
-// ReactDOM.render(<App />, rootElement);
 
 export default App;

@@ -1,5 +1,4 @@
 import React from "react";
-// import { Input, Picklist, PicklistOption } from "react-rainbow-components";
 
 class CreateProfileForm extends React.Component {
   state = {
@@ -14,7 +13,17 @@ class CreateProfileForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log(this.state);
+    let newUser = [
+      {
+        first_name: this.state.first_name,
+        email: this.state.email,
+        birthdate: this.state.birthdate,
+        location: this.state.location,
+        relationship_goal: this.state.relationship_goal,
+        blood_type: this.state.blood_type,
+        image_url: this.state.image_url
+      }
+    ];
     fetch("http://localhost:4000/api/v1/users", {
       method: "POST",
       headers: {
@@ -29,13 +38,12 @@ class CreateProfileForm extends React.Component {
         blood_type: this.state.blood_type,
         image_url: this.state.image_url
       })
-    });
+    }).then(this.props.passLogin(newUser));
   };
 
   changeHandler = e => {
-    console.log("e.target.name: ", e.target.name);
-    console.log("e.target.value: ", e.target.value);
     this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
   render() {
