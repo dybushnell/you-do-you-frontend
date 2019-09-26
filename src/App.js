@@ -29,8 +29,7 @@ class App extends React.Component {
   };
 
   passLogin = data => {
-    console.log("user data: ", data);
-
+    // console.log("user data: ", data);
     this.setState({ user: data });
     // debugger;
     this.setState({ location: "matches" });
@@ -68,7 +67,10 @@ class App extends React.Component {
       return (
         <div>
           <Header />
-          <CreateProfileContainer passLogin={this.passLogin} />
+          <CreateProfileContainer
+            passLogin={this.passLogin}
+            allUsers={this.state.allUsers}
+          />
         </div>
       );
     }

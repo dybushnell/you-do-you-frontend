@@ -8,49 +8,78 @@ class CreateProfileForm extends React.Component {
     location: "",
     relationship_goal: "",
     blood_type: "",
-    image_url: ""
+    image_url: "",
+    emailCheck: ""
   };
 
   submitHandler = e => {
     e.preventDefault();
-    let newUser = [
-      {
-        first_name: this.state.first_name,
-        email: this.state.email,
-        birthdate: this.state.birthdate,
-        location: this.state.location,
-        relationship_goal: this.state.relationship_goal,
-        blood_type: this.state.blood_type,
-        image_url: this.state.image_url
+
+    //If any fields are blank, alert user
+    if (
+      this.state.first_name === "" ||
+      this.state.email === "" ||
+      this.state.birthdate === "" ||
+      this.state.location === "" ||
+      this.state.relationship_goal === "" ||
+      this.state.blood_type === "" ||
+      this.state.image_url === ""
+    ) {
+      alert("Please fill all fields to complete your profile!");
+    }
+    //If all fields are complete, check if email is already being used
+    else {
+      let checkEmail = this.props.allUsers.filter(
+        user => user.email === this.state.email
+      );
+      if (checkEmail.length > 0) {
+        this.setState({
+          emailCheck:
+            "Email already exists; please use a different email address or login to your account"
+        });
       }
-    ];
-    fetch("http://localhost:4000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        first_name: this.state.first_name,
-        email: this.state.email,
-        birthdate: this.state.birthdate,
-        location: this.state.location,
-        relationship_goal: this.state.relationship_goal,
-        blood_type: this.state.blood_type,
-        image_url: this.state.image_url
-      })
-    }).then(this.props.passLogin(newUser));
+      //If email is unique, POST new user
+      else {
+        let newUser = [
+          {
+            first_name: this.state.first_name,
+            email: this.state.email,
+            birthdate: this.state.birthdate,
+            location: this.state.location,
+            relationship_goal: this.state.relationship_goal,
+            blood_type: this.state.blood_type,
+            image_url: this.state.image_url
+          }
+        ];
+        fetch("http://localhost:4000/api/v1/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            first_name: this.state.first_name,
+            email: this.state.email,
+            birthdate: this.state.birthdate,
+            location: this.state.location,
+            relationship_goal: this.state.relationship_goal,
+            blood_type: this.state.blood_type,
+            image_url: this.state.image_url
+          })
+        }).then(this.props.passLogin(newUser));
+      }
+    }
   };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   render() {
     return (
       <div className="profile-box">
         <form onSubmit={this.submitHandler}>
-          first name:
+          <span>first name:</span>
           <br />
           <input
             className="input"
@@ -62,7 +91,7 @@ class CreateProfileForm extends React.Component {
           />
           <br />
           <br />
-          email:
+          <span>email:</span>
           <br />
           <input
             className="input"
@@ -72,9 +101,10 @@ class CreateProfileForm extends React.Component {
             name="email"
             onChange={this.changeHandler}
           />
+          <span style={{ color: "red" }}>{this.state.emailCheck}</span>
           <br />
           <br />
-          location:
+          <span>location:</span>
           <br />
           <input
             className="input"
@@ -86,7 +116,7 @@ class CreateProfileForm extends React.Component {
           />
           <br />
           <br />
-          birthdate:
+          <span>birthdate:</span>
           <br />
           <input
             className="input"
@@ -98,7 +128,7 @@ class CreateProfileForm extends React.Component {
           />
           <br />
           <br />
-          bloodtype:
+          <span>bloodtype:</span>
           <select
             className="input"
             placeholder="blood_type"
@@ -118,7 +148,7 @@ class CreateProfileForm extends React.Component {
           </select>
           <br />
           <br />
-          relationship sought:
+          <span>relationship sought:</span>
           <select
             className="input"
             placeholder="relationship_goal"
@@ -132,7 +162,7 @@ class CreateProfileForm extends React.Component {
           </select>
           <br />
           <br />
-          link to image:
+          <span>link to image:</span>
           <br />
           <input
             className="input"
