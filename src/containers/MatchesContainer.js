@@ -5,6 +5,20 @@ import SmallProfileComponent from "../components/SmallProfileComponent";
 class MatchesContainer extends React.Component {
   state = { allUsers: this.props.allUsers, match_criterion: "first_name" };
 
+  postMessage = (recipient, message) => {
+    fetch("http://localhost:4000/api/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message_text: message,
+        sender_id: this.props.email,
+        recipient_id: recipient
+      })
+    });
+  };
+
   changeHandler = e => {
     this.setState({ match_criterion: e.target.value });
   };
@@ -41,6 +55,7 @@ class MatchesContainer extends React.Component {
           relationship_goal={match.relationship_goal}
           blood_type={match.blood_type}
           image_url={match.image_url}
+          postMessage={this.postMessage}
         />
       ));
     } else if (this.state.match_criterion === "birthdate") {
@@ -54,6 +69,7 @@ class MatchesContainer extends React.Component {
           relationship_goal={match.relationship_goal}
           blood_type={match.blood_type}
           image_url={match.image_url}
+          postMessage={this.postMessage}
         />
       ));
     } else if (this.state.match_criterion === "blood_type") {
@@ -67,6 +83,7 @@ class MatchesContainer extends React.Component {
           relationship_goal={match.relationship_goal}
           blood_type={match.blood_type}
           image_url={match.image_url}
+          postMessage={this.postMessage}
         />
       ));
     }

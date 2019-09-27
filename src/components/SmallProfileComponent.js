@@ -12,17 +12,7 @@ class SmallProfileComponent extends React.Component {
     this.setState({ showForm: !this.state.showForm });
     this.setState({ messageOrSend: !this.state.messageOrSend });
     //put the fetch in the container above this so that I can use the id of both profiles
-    fetch("http://localhost:4000/api/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message_text: this.state.message,
-        sender_id: this.props.email,
-        recipient_id: this.props.email
-      })
-    });
+    this.props.postMessage(this.props.email, this.state.message);
   };
 
   messageChange = e => {
