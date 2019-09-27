@@ -87,6 +87,11 @@ h1 {
   width: 400px;
 }
 
+.user-profile-small {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
+}
+
 .user-profile-small img {
   width: 100px;
 }
@@ -98,7 +103,7 @@ h1 {
   text-align: center;
   width: 400px;
   padding: 30px;
-  margin-left: 100px;
+  margin-left: 75px;
   margin-top: 50px;
 }
 

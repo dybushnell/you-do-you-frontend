@@ -34,7 +34,6 @@ class MatchesContainer extends React.Component {
       matchComponents = nameUsers.map(match => (
         <SmallProfileComponent
           key={match.email}
-          // clickHandler={this.props.clickHandler}
           first_name={match.first_name}
           email={match.email}
           birthdate={match.birthdate}
@@ -48,7 +47,6 @@ class MatchesContainer extends React.Component {
       matchComponents = birthdateUsers.map(match => (
         <SmallProfileComponent
           key={match.email}
-          // clickHandler={this.props.clickHandler}
           first_name={match.first_name}
           email={match.email}
           birthdate={match.birthdate}
@@ -62,7 +60,6 @@ class MatchesContainer extends React.Component {
       matchComponents = bloodUsers.map(match => (
         <SmallProfileComponent
           key={match.email}
-          // clickHandler={this.props.clickHandler}
           first_name={match.first_name}
           email={match.email}
           birthdate={match.birthdate}
@@ -105,6 +102,7 @@ class MatchesContainer extends React.Component {
               <option value="birthdate">Birthdate</option>
               <option value="blood_type">Blood Type</option>
             </select>
+            <br />
             <br />
             {matchComponents}
           </div>
