@@ -3,8 +3,8 @@ import React from "react";
 import WelcomeContainer from "./containers/WelcomeContainer";
 import CreateProfileContainer from "./containers/CreateProfileContainer";
 import MatchesContainer from "./containers/MatchesContainer";
-// import MessagesContainer from "./containers/MessagesContainer";
-import Header from "./components/Header";
+import MessagesContainer from "./containers/MessagesContainer";
+import HeaderContainer from "./containers/HeaderContainer";
 import "./App.css";
 
 class App extends React.Component {
@@ -15,10 +15,10 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.doTheFetch();
+    this.allUsersFetch();
   }
 
-  doTheFetch = () => {
+  allUsersFetch = () => {
     fetch("http://localhost:4000/api/v1/users")
       .then(resp => resp.json())
       .then(data => this.setState({ allUsers: data }));
@@ -29,17 +29,27 @@ class App extends React.Component {
   };
 
   passLogin = data => {
-    // console.log("user data: ", data);
     this.setState({ user: data });
-    // debugger;
     this.setState({ location: "matches" });
   };
 
-  render() {
+  switchToMatches = () => {
+    this.setState({ location: "matches" });
+  };
+
+  switchToMessages = () => {
+    this.setState({ location: "messages" });
+  };
+
+  switchToWelcome = () => {
+    this.setState({ location: "welcome" });
+  };
+
+  render = () => {
     if (this.state.location === "welcome") {
       return (
         <div>
-          <Header />
+          <HeaderContainer location={this.state.location} />
           <WelcomeContainer
             allUsers={this.state.allUsers}
             passLogin={this.passLogin}
@@ -50,7 +60,12 @@ class App extends React.Component {
     } else if (this.state.location === "matches") {
       return (
         <div>
-          <Header />
+          <HeaderContainer
+            location={this.state.location}
+            switchToMatches={this.switchToMatches}
+            switchToMessages={this.switchToMessages}
+            switchToWelcome={this.switchToWelcome}
+          />
           <MatchesContainer
             allUsers={this.state.allUsers}
             first_name={this.state.user[0].first_name}
@@ -66,15 +81,42 @@ class App extends React.Component {
     } else if (this.state.location === "createProfile") {
       return (
         <div>
-          <Header />
+          <HeaderContainer
+            location={this.state.location}
+            switchToMatches={this.switchToMatches}
+            switchToMessages={this.switchToMessages}
+            switchToWelcome={this.switchToWelcome}
+          />
           <CreateProfileContainer
             passLogin={this.passLogin}
             allUsers={this.state.allUsers}
           />
         </div>
       );
+    } else if (this.state.location === "messages") {
+      return (
+        <div>
+          <HeaderContainer
+            location={this.state.location}
+            switchToMatches={this.switchToMatches}
+            switchToMessages={this.switchToMessages}
+            switchToWelcome={this.switchToWelcome}
+          />
+          <MessagesContainer
+            passLogin={this.passLogin}
+            allUsers={this.state.allUsers}
+            first_name={this.state.user[0].first_name}
+            email={this.state.user[0].email}
+            birthdate={this.state.user[0].birthdate}
+            location={this.state.user[0].location}
+            relationship_goal={this.state.user[0].relationship_goal}
+            blood_type={this.state.user[0].blood_type}
+            image_url={this.state.user[0].image_url}
+          />
+        </div>
+      );
     }
-  }
+  };
 }
 
 export default App;

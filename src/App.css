@@ -5,15 +5,31 @@ h1 {
   margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
-  font-weight: bold;
 }
 
 .header {
+  /* position: fixed; */
   background-color: rgb(152, 220, 247);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+.header h1 {
+  font-family: "Lobster", cursive;
+  display: block;
+  font-size: 3em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.header-shit {
+  position: absolute;
+  top: 8px;
+  right: 16px;
 }
 
 .welcome-container {
@@ -104,7 +120,7 @@ h1 {
   width: 400px;
   padding: 30px;
   margin-left: 75px;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .search-input {
@@ -124,4 +140,35 @@ h1 {
   font-size: 1rem;
   cursor: pointer;
   font-weight: 400;
+}
+
+.messages-container {
+  display: flex;
+}
+
+.message-list {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 400px;
+  padding: 30px;
+  margin-left: 75px;
+  margin-top: 25px;
+}
+
+.message-sent {
+  background-color: #e4e5ec;
+  text-align: left;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
+}
+.message-received {
+  text-align: left;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
 }
