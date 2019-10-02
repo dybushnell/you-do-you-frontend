@@ -4,13 +4,34 @@ import BigProfileComponent from "../components/BigProfileComponent";
 
 class MessagesContainer extends React.Component {
   state = {
-    allMessages: []
+    allMessages: [],
+    messageProfile: []
   };
 
   componentDidMount = () => {
     fetch("http://localhost:4000/api/v1/messages")
       .then(resp => resp.json())
       .then(data => this.setState({ allMessages: data }));
+  };
+
+  postMessage = (recipient, message) => {
+    fetch("http://localhost:4000/api/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message_text: message,
+        sender_id: this.props.email,
+        recipient_id: recipient
+      })
+    }).then(this.componentDidMount());
+  };
+
+  deleteMessage = id => {
+    fetch("http://localhost:4000/api/v1/messages/" + id, {
+      method: "DELETE"
+    }).then(this.componentDidMount());
   };
 
   render = () => {
@@ -22,6 +43,8 @@ class MessagesContainer extends React.Component {
 
     let messageComponents = messagesArray.map(message => (
       <MessageComponent
+        key={message.id}
+        identifier={message.id}
         allUsers={this.props.allUsers}
         sender_id={message.sender_id}
         recipient_id={message.recipient_id}
@@ -34,6 +57,8 @@ class MessagesContainer extends React.Component {
         relationship_goal={this.props.relationship_goal}
         blood_type={this.props.blood_type}
         image_url={this.props.image_url}
+        postMessage={this.postMessage}
+        deleteMessage={this.deleteMessage}
       />
     ));
 
@@ -57,6 +82,7 @@ class MessagesContainer extends React.Component {
           <br />
           {messageComponents}
         </div>
+        <div className="message-profile"></div>
       </div>
     );
   };

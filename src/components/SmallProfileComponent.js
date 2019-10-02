@@ -37,15 +37,6 @@ class SmallProfileComponent extends React.Component {
         Searching for {this.props.relationship_goal} relationship
         <br />
         <br />
-        {this.state.messageOrSend ? (
-          <button onClick={this.clickHandlerShowForm}> Type a message </button>
-        ) : (
-          <button onClick={this.clickHandlerSendMessage}>
-            {" "}
-            Send your message!{" "}
-          </button>
-        )}
-        <br />
         {this.state.showForm ? (
           <div>
             <br />
@@ -56,6 +47,15 @@ class SmallProfileComponent extends React.Component {
           </div>
         ) : null}
         {/*end showForm ternary*/}
+        {this.state.messageOrSend ? (
+          <button onClick={this.clickHandlerShowForm}> Type a message </button>
+        ) : (
+          <button onClick={this.clickHandlerSendMessage}>
+            {" "}
+            Send your message!{" "}
+          </button>
+        )}
+        <br />
         <br />
         <br />
       </div>
