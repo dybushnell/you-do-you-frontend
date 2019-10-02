@@ -8,8 +8,6 @@ class BigProfileComponent extends React.Component {
         <br />
         <img src={this.props.image_url} alt="" />
         <h2>{this.props.first_name}</h2>
-        {/* {this.props.email}@gmail.com */}
-        {/* <br /> */}
         {this.props.birthdate}
         <br />
         {this.props.location}

@@ -38,7 +38,8 @@ class MessageComponent extends React.Component {
           <br />
           to: {this.props.recipient_id}
           <br />
-          message: {this.props.message_text}
+          <br />
+          {this.props.message_text}
           <br />
           <br />
           <button onClick={this.deleteMessage}> Delete message </button>
@@ -53,7 +54,7 @@ class MessageComponent extends React.Component {
           <br />
           to: You
           <br />
-          message: {this.props.message_text}
+          {this.props.message_text}
           <br />
           <br />
           {this.state.showForm ? (

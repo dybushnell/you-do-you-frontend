@@ -25,7 +25,11 @@ class MessagesContainer extends React.Component {
         sender_id: this.props.email,
         recipient_id: recipient
       })
-    }).then(this.componentDidMount());
+    }).then(
+      fetch("http://localhost:4000/api/v1/messages")
+        .then(resp => resp.json())
+        .then(data => this.setState({ allMessages: data }))
+    );
   };
 
   deleteMessage = id => {
@@ -81,7 +85,7 @@ class MessagesContainer extends React.Component {
           />
         </div>
         <div className="message-list">
-          <h3>Hi {this.props.first_name}!</h3>
+          <h2>Hi {this.props.first_name}!</h2>
           <div>Here are your messages</div>
           <br />
           {messageComponents}

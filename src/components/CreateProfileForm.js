@@ -91,7 +91,7 @@ class CreateProfileForm extends React.Component {
           />
           <br />
           <br />
-          <span>email:</span>
+          <span>username:</span>
           <br />
           <input
             className="input"

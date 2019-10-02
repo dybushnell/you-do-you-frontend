@@ -11,7 +11,7 @@ class WelcomeComponent extends React.Component {
     if (emailMatchedUser.length === 1) {
       this.props.passLogin(emailMatchedUser);
     } else {
-      this.setState({ exists: !this.state.exists });
+      this.setState({ exists: false });
     }
   };
 
@@ -42,7 +42,7 @@ class WelcomeComponent extends React.Component {
               onChange={this.changeHandler}
             />
             <br />
-            <input type="submit" value="submit" />
+            <input type="submit" value="Login" />
           </form>
         </div>
         <br />
@@ -60,7 +60,7 @@ class WelcomeComponent extends React.Component {
             Sign up here!
             <br />
             <br />
-            <input type="submit" value="submit" />
+            <input type="submit" value="Sign up" />
           </div>
         </form>
       </div>

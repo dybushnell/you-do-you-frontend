@@ -105,7 +105,7 @@ class MatchesContainer extends React.Component {
           </div>{" "}
           {/* end user-profile-big*/}
           <div className="search-and-results">
-            <h3>Find a match!</h3>
+            <h2>Find a match!</h2>
             <div> Search by:</div>
             <br />
             <select
