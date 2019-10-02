@@ -43,10 +43,16 @@ h1 {
   justify-content: center;
   text-align: center;
   width: 200px;
-  height: 200px;
   padding: 30px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
+}
+
+.warning {
+  font-size: 0.5 em;
+  color: red;
+  font-style: italic;
+  font-size: smaller;
 }
 
 .profile-container {

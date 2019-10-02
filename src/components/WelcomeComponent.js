@@ -1,7 +1,7 @@
 import React from "react";
 
 class WelcomeComponent extends React.Component {
-  state = { email: "" };
+  state = { email: "", exists: true };
 
   submitLogin = e => {
     e.preventDefault();
@@ -10,6 +10,8 @@ class WelcomeComponent extends React.Component {
     );
     if (emailMatchedUser.length === 1) {
       this.props.passLogin(emailMatchedUser);
+    } else {
+      this.setState({ exists: !this.state.exists });
     }
   };
 
@@ -43,6 +45,12 @@ class WelcomeComponent extends React.Component {
             <input type="submit" value="submit" />
           </form>
         </div>
+        <br />
+        {this.state.exists ? (
+          ""
+        ) : (
+          <div className="warning">User not found!</div>
+        )}
         <br />
         <br />
         <form onSubmit={this.submitSignup}>

@@ -31,7 +31,11 @@ class MessagesContainer extends React.Component {
   deleteMessage = id => {
     fetch("http://localhost:4000/api/v1/messages/" + id, {
       method: "DELETE"
-    }).then(this.componentDidMount());
+    }).then(
+      fetch("http://localhost:4000/api/v1/messages")
+        .then(resp => resp.json())
+        .then(data => this.setState({ allMessages: data }))
+    );
   };
 
   render = () => {
