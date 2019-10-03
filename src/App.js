@@ -24,6 +24,20 @@ class App extends React.Component {
       .then(data => this.setState({ allUsers: data }));
   };
 
+  // postMessage = (sender, recipient, message) => {
+  //   fetch("http://localhost:4000/api/v1/messages", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       message_text: message,
+  //       sender_id: sender,
+  //       recipient_id: recipient
+  //     })
+  //   });
+  // };
+
   passLocation = () => {
     this.setState({ location: "createProfile" });
   };
