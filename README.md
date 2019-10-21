@@ -23,7 +23,7 @@ Built with
 
 ### Features
 
-You Do You will match exact first names (Alex matches Alex, but does not match Alexander nor Alexa), bloodtypes, and exact birthdays (January 3, 2000, matches only January 3, 2000).
+You Do You will match exact first names (Alex matches Alex, but does not match Alexander nor Alexa), bloodtypes, and exact birthdays (January 3, 1997, matches only January 3, 1997).
 
 ### Installation
 
@@ -43,7 +43,7 @@ npm start
 
 ### Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dybushnell/inflation_db. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dybushnell/you-do-you-frontend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ### Acknowledgments
 
@@ -52,9 +52,5 @@ I greatly appreciate the assistance of Flatiron School's Steven Balasta, Tashawn
 ### License
 
 The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-### Code of Conduct
-
-Everyone interacting in the InflationDb project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/dybushnell/inflation_db/blob/master/CODE_OF_CONDUCT.md).
 
 MIT © [dybushnell]()
