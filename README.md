@@ -10,8 +10,9 @@ There are a lot of dating sites, ranging from the largely unfocused (eg Match) t
 
 Minimum viable product is complete. Several stretch goals lay ahead.
 
-### Screenshots
-Include logo/demo screenshot etc.
+### Demo
+
+A demo video is viewable [here](https://youtu.be/HILN9rc2EOg).
 
 ### Tech/framework used
 
