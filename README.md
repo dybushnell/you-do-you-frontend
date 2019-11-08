@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## You Do You
 
-## Available Scripts
+You Do You is a dating app that matches users by strict criteria: first name, birthdate, or bloodtype.
 
-In the project directory, you can run:
+### Motivation
 
-### `npm start`
+There are a lot of dating sites, ranging from the largely unfocused (eg Match) to the narrowly focused (eg Farmers Only). I felt there was space for an app that served narcissists who want matches as close to themselves as possible. And also people who have trouble remembering names/birthdays/blooddtypes! You Do You gives them one less thing to have to remember.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Build status
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Minimum viable product is complete. Several stretch goals lay ahead.
 
-### `npm test`
+### Demo
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A demo video is viewable [here](https://youtu.be/HILN9rc2EOg).
 
-### `npm run build`
+### Tech/framework used
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Built with
+- React
+- CSS
+- Rails API
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You Do You will match exact first names (Alex matches Alex, but does not match Alexander nor Alexa), bloodtypes, and exact birthdays (January 3, 1997, matches only January 3, 1997).
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run You Do You locally, run the backend firstby typing the following commands in the terminal:
+```
+rails db migrate
+rails db seed
+rails s
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then run the front end:
+```
+npm install
+bundle install
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Contributing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Bug reports and pull requests are welcome on GitHub at https://github.com/dybushnell/you-do-you-frontend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-## Learn More
+### Acknowledgments
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I greatly appreciate the assistance of Flatiron School's Steven Balasta, Tashawn Williams, Brianna Dixon, and Jeffrey Hwang in the creation of this project. Overall this project would not have been possible without Liana Rosabal-Bushnell, whose 2014 OKCupid profile was the last I would ever have to read.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### License
 
-### Code Splitting
+The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+MIT © [dybushnell]()
