@@ -1,5 +1,4 @@
 import React from "react";
-// import { Route, BrowserRouter as Router } from "react-router-dom";
 import WelcomeContainer from "./containers/WelcomeContainer";
 import CreateProfileContainer from "./containers/CreateProfileContainer";
 import MatchesContainer from "./containers/MatchesContainer";
@@ -23,20 +22,6 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then(data => this.setState({ allUsers: data }));
   };
-
-  // postMessage = (sender, recipient, message) => {
-  //   fetch("http://localhost:4000/api/v1/messages", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       message_text: message,
-  //       sender_id: sender,
-  //       recipient_id: recipient
-  //     })
-  //   });
-  // };
 
   passLocation = () => {
     this.setState({ location: "createProfile" });

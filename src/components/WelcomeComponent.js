@@ -36,7 +36,7 @@ class WelcomeComponent extends React.Component {
             <input
               className="input"
               type="text"
-              placeholder="email"
+              placeholder="username"
               value={this.state.email}
               name="email"
               onChange={this.changeHandler}
